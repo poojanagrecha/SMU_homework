@@ -1,0 +1,41 @@
+.card-header {
+    font-size: 100px;
+    font-weight: bold;
+    background-color: black;
+    font-family: "Aclonica";
+    color: lavenderblush
+}
+
+.image_inline {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 60%;
+}
+
+.images {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 50px;
+    width: 50px;
+    outline: black;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-size: 100%, 100%;
+    border-radius: 20%;
+    border: 1px solid black;
+}
+
+.card-title {
+    font-family: Aclonica;
+    text-align: center;
+}
+
+.card-body {
+    background-color: whitesmoke;
+}
