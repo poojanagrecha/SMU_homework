@@ -25,7 +25,16 @@ def scrape():
 
     # Parse HTML with Beautiful Soup
     news_soup = BeautifulSoup(html, "html.parser")
+    try:
+        slide_elem = news_soup.select_one("ul.item_list li.slide")
+        news_title = slide_elem.find("div", class_="content_title").get_text()
+        news_paragraph = slide_elem.find(
+            "div", class_="article_teaser_body").get_text()
 
+    except AttributeError:
+        return None, None
+
+    return news_title, news_paragraph
     # Retrieve the most recent article's title and paragraph.
     # Store in news variables.
     news_title = news_soup.find("div", class_="content_title").find('a').text
@@ -194,25 +203,16 @@ def scrape():
 
     """ Mars Data Dictionary - MongoDB """
 
-    # Create empty dictionary for all Mars Data.
-    mars_data = {}
-
-    # Append news_title and news_paragraph to mars_data.
-    mars_data['news_title'] = news_title
-    mars_data['news_paragraph'] = news_paragraph
-
-    # Append featured_image_url to mars_data.
-    mars_data['featured_image_url'] = featured_image_url
-
-    # Append mars_weather to mars_data.
-    mars_data['mars_weather'] = mars_weather
-
-    # Append mars_facts to mars_data.
-    mars_data['mars_facts'] = mars_facts
-
-    # Append hemisphere_image_urls to mars_data.
-    mars_data['hemisphere_image_urls'] = hemisphere_image_urls
-
-    print("Scrape Complete!!!")
+    # Create dictionary for all Mars Data.
+    mars_data = {
+        "news_title": news_title,
+        "news_paragraph": news_paragraph,
+        "featured_image": featured_image_url,
+        "hemispheres": hemis_url,
+        "weather": weather_url,
+        "facts": facts_url
+    }
+    browser.quit()
+    print(scrape())
 
     return mars_data
